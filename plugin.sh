@@ -12,7 +12,7 @@ if [ "${PLUGIN_USERNAME:-}" ] || [ "${PLUGIN_PASSWORD:-}" ]; then
     cat > /kaniko/.docker/config.json <<DOCKERJSON
 {
     "auths": {
-        "https://${REGISTRY}/v1": {
+        "https://${REGISTRY}": {
             "auth": "${DOCKER_AUTH}"
         }
     }
