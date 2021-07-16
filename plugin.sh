@@ -96,7 +96,9 @@ else
     CACHE=""
 fi
 
-CMD=/kaniko/executor -v ${LOG} \
+echo ${BUILD_ARGS:-}
+
+/kaniko/executor -v ${LOG} \
     --context=${CONTEXT} \
     --dockerfile=${DOCKERFILE} \
     ${EXTRA_OPTS} \
@@ -107,9 +109,3 @@ CMD=/kaniko/executor -v ${LOG} \
     ${TARGET:-} \
     ${BUILD_ARGS:-} \
     ${BUILD_ARGS_FROM_ENV:-}
-
-if [[ -z $PLUGIN_DRYRUN ]]; then
-    echo $CMD
-else
-    $CMD
-fi
