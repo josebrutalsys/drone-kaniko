@@ -7,7 +7,7 @@ export PATH=$PATH:/kaniko/
 REGISTRY=${PLUGIN_REGISTRY:-index.docker.io}
 
 if [ "${PLUGIN_USERNAME:-}" ] || [ "${PLUGIN_PASSWORD:-}" ]; then
-    DOCKER_AUTH=`echo -n "${PLUGIN_USERNAME}:${PLUGIN_PASSWORD}" | base64 | tr -d "\n"`
+    DOCKER_AUTH=`echo -n "${PLUGIN_USERNAME}:${PLUGIN_PASSWORD}" | /busybox/base64 | tr -d "\n"`
 
     cat > /kaniko/.docker/config.json <<DOCKERJSON
 {
@@ -20,6 +20,7 @@ if [ "${PLUGIN_USERNAME:-}" ] || [ "${PLUGIN_PASSWORD:-}" ]; then
 DOCKERJSON
 fi
 
+cat /kaniko/.docker/config.json
 if [ "${PLUGIN_JSON_KEY:-}" ];then
     echo "${PLUGIN_JSON_KEY}" > /kaniko/gcr.json
     export GOOGLE_APPLICATION_CREDENTIALS=/kaniko/gcr.json
