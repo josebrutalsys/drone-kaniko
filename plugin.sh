@@ -20,7 +20,6 @@ if [ "${PLUGIN_USERNAME:-}" ] || [ "${PLUGIN_PASSWORD:-}" ]; then
 DOCKERJSON
 fi
 
-cat /kaniko/.docker/config.json
 if [ "${PLUGIN_JSON_KEY:-}" ];then
     echo "${PLUGIN_JSON_KEY}" > /kaniko/gcr.json
     export GOOGLE_APPLICATION_CREDENTIALS=/kaniko/gcr.json
